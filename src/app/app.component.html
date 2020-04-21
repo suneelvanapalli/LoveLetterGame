@@ -1,4 +1,4 @@
-<h3>Deck</h3>
+<h3>Deck {{ game.deck.length }}</h3>
 <div class="row">
   <div class="col-sm-1" *ngFor="let card of game.deck">
     <div class="card" style="width: 15rem;">
@@ -11,8 +11,13 @@
   <h3>Players</h3>
 </div>
 <div class="row">
-  <div class="col-sm-3" *ngFor="let player of game.players">
-    <div class="card-body">
+  <div class="col-sm-3" *ngFor="let player of game.players; let i = index">
+    <div
+      class="card-body"
+      [ngStyle]="{
+        'background-color': game.currentTurn === i ? 'lightblue' : ''
+      }"
+    >
       <h5 class="card-title">{{ player.id }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ player.name }}</h6>
       <div class="card" style="width: 15rem;" *ngFor="let card of player.cards">
@@ -20,7 +25,19 @@
           <h5 class="card-title">{{ card.id }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ card.name }}</h6>
         </div>
+        <div class="card-footer" *ngIf="i === game.currentPlayer">
+          <button class="btn btn-success">Discard</button>
+        </div>
       </div>
+    </div>
+    <div class="card-footer text-muted" *ngIf="i === game.currentPlayer">
+      <button
+        class="btn btn-primary"
+        [disabled]="!(game.currentTurn === i)"
+        (click)="receiveCardFromDeck(i)"
+      >
+        Receive
+      </button>
     </div>
   </div>
 </div>
