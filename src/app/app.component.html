@@ -1,0 +1,26 @@
+<h3>Deck</h3>
+<div class="row">
+  <div class="col-sm-1" *ngFor="let card of game.deck">
+    <div class="card" style="width: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ card.id }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ card.name }}</h6>
+      </div>
+    </div>
+  </div>
+  <h3>Players</h3>
+</div>
+<div class="row">
+  <div class="col-sm-3" *ngFor="let player of game.players">
+    <div class="card-body">
+      <h5 class="card-title">{{ player.id }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ player.name }}</h6>
+      <div class="card" style="width: 15rem;" *ngFor="let card of player.cards">
+        <div class="card-body">
+          <h5 class="card-title">{{ card.id }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ card.name }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
