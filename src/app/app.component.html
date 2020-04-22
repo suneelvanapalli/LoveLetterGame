@@ -13,9 +13,8 @@
   <div class="col-sm-3" *ngFor="let player of game.players; let i = index">
     <app-player
       [player]="player"
-      [playerIndex]="i"
-      [yourTurn]="game.currentTurn === i"
-      [areYouTheCurrenPlayer]="i === game.currentPlayer"
+      [playerIndex]="i"   
+      [game]="game"  
     ></app-player>
   </div>
 </div>

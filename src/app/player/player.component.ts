@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Player, Card } from '../game.model';
+import { Player, Card, Game } from '../game.model';
 import { GameService } from '../game.service';
 
 @Component({
@@ -10,11 +10,12 @@ import { GameService } from '../game.service';
 export class PlayerComponent implements OnInit {
   @Input() player: Player;
   @Input() playerIndex: number;
-  @Input() yourTurn: boolean;
-  @Input() areYouTheCurrenPlayer: boolean;
+  @Input() game: Game;
   constructor(private gameService: GameService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   receiveCardFromDeck(id: number) {
     this.gameService.takeCardFromDeck(id);

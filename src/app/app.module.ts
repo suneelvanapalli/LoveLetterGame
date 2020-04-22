@@ -7,15 +7,9 @@ import { CardComponent } from './card/card.component';
 import { PlayerComponent } from './player/player.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CardComponent,
-    PlayerComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, CardComponent, PlayerComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

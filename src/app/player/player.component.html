@@ -2,29 +2,116 @@
   <div
     class="card-body"
     [ngStyle]="{
-      'background-color': yourTurn ? 'lightblue' : ''
+      'background-color': player.isYourTurn ? 'lightblue' : ''
     }"
   >
     <!-- <h5 class="card-title">{{ player.id }}</h5> -->
     <p class="card-subtitle mb-2 text-muted">{{ player.name }}</p>
-    <app-card *ngFor="let card of player.cards; let i = index" [card]="card" [cardIndex]="i" onDiscardClick="onDiscardClick($event)">
-
+    <app-card
+      *ngFor="let card of player.cards; let i = index"
+      [card]="card"
+      [cardIndex]="i"
+      (onDiscardClick)="onDiscardClick($event)"
+    >
     </app-card>
   </div>
-  <div class="card-footer text-muted" *ngIf="areYouTheCurrenPlayer">
+  <div class="card-footer text-muted" *ngIf="player.areYouCurrentPlayer">
     <button
       class="btn btn-primary"
-      *ngIf="yourTurn"
+      *ngIf="player.isYourTurn && player.receivedCardFromDeck === false"
       (click)="receiveCardFromDeck(playerIndex)"
     >
       Receive
     </button>
   </div>
-  <div class="card-footer" *ngIf="!areYouTheCurrenPlayer">
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true &&
+      game.discards[game.discards.length - 1].name === 'Guard'
+    "
+  >
+    <select id="">
+      <option value="guard">Guard</option>
+      <option value="guard">Priest</option>
+      <option value="guard">Baron</option>
+      <option value="guard">Handmaid</option>
+      <option value="guard">Prince</option>
+      <option value="guard">King</option>
+      <option value="guard">Countess</option>
+    </select>
     <button class="btn btn-primary">Guess</button>
-    <button class="btn btn-primary">See the card</button>
-    <button class="btn btn-primary">Compare</button>
-    <button class="btn btn-primary">Discard and pick from deck</button>
-    <button class="btn btn-primary">Swap</button>
   </div>
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true &&
+      game.discards[game.discards.length - 1].name === 'Priest'
+    "
+  >
+    <button class="btn btn-primary">Reveal</button>
+  </div>
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true &&
+      game.discards[game.discards.length - 1].name === 'Baron'
+    "
+  >
+    <button class="btn btn-primary">Compare</button>
+  </div>
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true &&
+      game.discards[game.discards.length - 1].name === 'Handmaid'
+    "
+  >
+    <p>Protect mode on till next turn</p>
+    <button class="btn btn-primary">Ok</button>
+  </div>
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true &&
+      game.discards[game.discards.length - 1].name === 'Prince'
+    "
+  >    
+    <button class="btn btn-primary">Discard</button>
+  </div>
+
+  <div
+    class="card-footer"
+    *ngIf="
+      !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+      game.discardModeOn === true && 
+      game.discards[game.discards.length - 1].name === 'Countess'
+    "
+  >    
+    <button class="btn btn-primary">Ok</button>
+  </div>
+
+  <div
+  class="card-footer"
+  *ngIf="
+    !player.areYouCurrentPlayer && !player.IsProtectModeOn &&
+    game.discardModeOn === true &&
+    game.discards[game.discards.length - 1].name === 'King'
+  "
+>    
+  <button class="btn btn-primary">Swap</button>
+</div>
+
+
+
 </div>
