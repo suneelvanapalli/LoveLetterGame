@@ -18,4 +18,9 @@ export class GameService {
     this.game.players[id].cards.push(this.game.deck[index]);
     this.game.deck.splice(index, 1);
   }
+
+  discard(pIndex: number, cardId: number) {
+    this.game.discards.push(this.game.players[pIndex].cards[cardId]);
+    this.game.players[pIndex].cards.splice(cardId);
+  }
 }

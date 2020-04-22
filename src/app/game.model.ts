@@ -25,7 +25,7 @@ export class Player {
 
 export class Game {
   id: string;
-  currentPlayer = 2;
+  currentPlayer = 0;
   players: Player[] = [
     new Player('player1', 'Player 1'),
     new Player('player2', 'Player 2'),
@@ -34,6 +34,7 @@ export class Game {
   ];
   // tslint:disable-next-line:no-inferrable-types
   currentTurn: number = 0;
+  discards: Card[] = [];
   deck: Card[] = [
     new Card('guard1', 'Guard', CardType.Guard),
     new Card('guard2', 'Guard', CardType.Guard),
